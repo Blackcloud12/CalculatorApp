@@ -62,7 +62,25 @@ class MainActivity : AppCompatActivity() {
         buttonDecimal.setOnClickListener(listener)
 
 
+        val opListener = View.OnClickListener { v ->
+            val op = (v as Button).text.toString()
+            val value = newNumber.text.toString()
+            if (value.isNotEmpty()) {
+                performOperation(value, op)
+            }
+            pendingOperation = op
+            displayOperation.text = pendingOperation
+        }
 
-
+        buttonEquals.setOnClickListener(opListener)
+        buttonDivide.setOnClickListener(opListener)
+        buttonMultiply.setOnClickListener(opListener)
+        buttonSubtract.setOnClickListener(opListener)
+        buttonAdd.setOnClickListener(opListener)
     }
+
+    private fun performOperation(value: String, operation: String) {
+        displayOperation.text = operation
+    }
+
 }
